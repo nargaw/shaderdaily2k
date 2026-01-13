@@ -33,7 +33,7 @@
 }
 
 .toggle {
-  margin-left: auto;
+  /* margin-left: auto; */
 }
 
 #toggle-btn:hover {
@@ -49,7 +49,7 @@
 .flip-nav {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
   background: #333;
   padding-left: 10px;
   padding-right: 10px;
@@ -69,13 +69,18 @@
 }
 
 .submit-btn{
-  height: 100%;
-  margin: 0;
-  
+  height: 54px;
+  width: 60px;
 }
 
 .back-btn{
   width: 100px;
+}
+
+.title{
+  margin: 0;
+  align-content: center;
+  justify-content: center;
 }
 
 .next-btn{
@@ -104,5 +109,5 @@
 
 .text-box{
   height: 100%;
-  width: 126px;
+  width: 75px;
 }
