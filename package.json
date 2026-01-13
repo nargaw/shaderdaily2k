@@ -1,0 +1,26 @@
+{
+  "name": "threejs-codemirror",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "prettier-plugin-glsl": "^0.2.1",
+    "vite": "^6.3.1",
+    "vite-plugin-glsl": "^1.4.1"
+  },
+  "dependencies": {
+    "@codemirror/state": "^6.5.2",
+    "@codemirror/theme-one-dark": "^6.1.2",
+    "@codemirror/view": "^6.36.8",
+    "codemirror": "^6.0.1",
+    "codemirror-lang-glsl": "^0.5.0",
+    "three": "^0.176.0"
+  }
+}

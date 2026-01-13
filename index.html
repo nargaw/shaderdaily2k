@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shader Daily 2K</title>
+  </head>
+  <body>
+    <div class="flip-nav">
+      
+      <form id='myForm' class="tab form input">
+        <input class="text-box tab" type="number" name="shader" placeholder="Enter Shader Number" />
+        <input class="submit-btn tab" type="submit"  value="Submit" />
+      </form>
+
+      
+        <button id="back-btn" class="back-btn nav">back</button>
+        <p id="current-shader-label" class="counter"></p>
+        <button id="next-btn" class="next-btn nav" >next</button>
+    
+      
+      <button id="toggle-btn" class="tab toggle">Hide Editor</button>
+    </div>
+    <div id="app"></div>
+    <div id="editor"></div>
+    <canvas id="webgl"></canvas>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
