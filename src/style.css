@@ -30,6 +30,7 @@
   overflow: auto;
   white-space: pre-wrap !important;
   word-break: break-word;
+  display: none;
 }
 
 .toggle {

@@ -1,11 +1,11 @@
 import './style.css';
 import * as THREE from 'three';
-import frag0 from './Shaders/frag0.glsl?raw';
-import frag1 from './Shaders/frag1.glsl?raw';
-import frag2 from './Shaders/frag2.glsl?raw';
-import frag3 from './Shaders/frag3.glsl?raw';
-import frag4 from './Shaders/frag4.glsl?raw';
-import vertexShader from './Shaders/vertex.glsl';
+import frag0 from './Shaders/shading/frag0.glsl?raw';
+import frag1 from './Shaders/shading/frag1.glsl?raw';
+import frag2 from './Shaders/shading/frag2.glsl?raw';
+import frag3 from './Shaders/shading/frag3.glsl?raw';
+import frag4 from './Shaders/shading/frag4.glsl?raw';
+import vertexShader from './Shaders/shading/vertex.glsl?raw';
 import { basicSetup, EditorView } from 'codemirror';
 import { EditorState } from '@codemirror/state';
 import { glsl } from 'codemirror-lang-glsl';
@@ -31,6 +31,7 @@ const renderer = new THREE.WebGLRenderer({ canvas });
 renderer.setSize(width, height);
 renderer.setClearColor(new THREE.Color('#1f1f1f'));
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1));
+// renderer.setAnimationLoop(animate)
 
 const uniforms = {
   u_time: {
@@ -61,6 +62,8 @@ const planeMaterial = new THREE.ShaderMaterial({
   fragmentShader: currentFragment,
   vertexShader: vertexShader,
 });
+
+console.log(currentFragment)
 const shaderPlane = new THREE.Mesh(planeGeometry, planeMaterial);
 scene.add(shaderPlane);
 
@@ -104,6 +107,8 @@ const view = new EditorView({
   parent: document.querySelector('#editor'),
 });
 
+
+
 const toggleBtn = document.getElementById('toggle-btn');
 const backBtn = document.getElementById('back-btn')
 const nextBtn = document.getElementById('next-btn')
@@ -135,27 +140,30 @@ nextBtn.addEventListener('click', () => {
   label.innerHTML = fragmentNumber || 0
 })
 
-formSubmitBtn.addEventListener('submit', (e) => {
-  e.preventDefault()
+// formSubmitBtn.addEventListener('submit', (e) => {
+//   e.preventDefault()
 
-  const form = e.target
-  const formData = new FormData(form)
-  const formJson = Object.fromEntries(formData.entries())
-  const num = parseInt(formJson.shader)
+//   const form = e.target
+//   const formData = new FormData(form)
+//   const formJson = Object.fromEntries(formData.entries())
+//   const num = parseInt(formJson.shader)
   
-  if(!Number.isNaN(num) && num >= 0 && num <= maxFragmentNumber){
-      const frag = fragments[num] || fragments[0]; 
-      loadShader(frag)
-  }
-  // label.innerHTML.replace(fragmentNumber)
-  label.innerHTML = num || 0
-  document.getElementById("myForm").reset();
-})
+//   if(!Number.isNaN(num) && num >= 0 && num <= maxFragmentNumber){
+//       const frag = fragments[num] || fragments[0]; 
+//       loadShader(frag)
+//   }
+//   // label.innerHTML.replace(fragmentNumber)
+//   label.innerHTML = num || 0
+//   document.getElementById("myForm").reset();
+// })
 
 toggleBtn.addEventListener('click', () => {
-  const isHidden = editorElement.style.display === 'none';
-  editorElement.style.display = isHidden ? 'block' : 'none';
-  toggleBtn.textContent = isHidden ? 'Hide Editor' : 'Show Editor';
+  // const isHidden = editorElement.style.display === 'none';
+  // editorElement.style.display = isHidden ? 'block' : 'none';
+  // toggleBtn.textContent = isHidden ? 'Hide Editor' : 'Show Editor';
+  const show = editorElement.style.display === 'block';
+  editorElement.style.display = show ? 'none' : 'block';
+  toggleBtn.textContent = show ? 'Show Editor':'Hide Editor';
 });
 
 //update shader and page
@@ -181,7 +189,7 @@ window.onresize = () => {
 const clock = new THREE.Clock();
 
 //animate
-const animate = () => {
+const animate = (time) => {
   window.requestAnimationFrame(animate);
   uniforms.u_time.value = clock.getElapsedTime();
   renderer.render(scene, camera);
