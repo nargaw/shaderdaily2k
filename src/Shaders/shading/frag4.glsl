@@ -3,12 +3,6 @@ uniform vec2 u_resolution;
 
 #define PI (3.1415926538)
 
-void mainImage( out vec4 o, vec2 u ) {
-    float s=.25,i,n;
-    vec3 r = iResolution,p;
-    for(u = (u-r.xy/2.)/r.y-s; i++ < 32. && ++s>.001;)
-        for (p += vec3(u*s,s),s = p.y,
-            n =.01; n < 1.;n+=n)
-            s += abs(dot(sin(p.z + iTime + p/n),  r/r)) * n*.1;
-    o = tanh(i*vec4(5,2,1,0)/length(u-.1)/5e2);
+void main(){
+    gl_FragColor = vec4(1., 0., 0., 1.);
 }
